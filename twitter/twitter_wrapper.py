@@ -28,7 +28,7 @@ class TwitterApi:
 						tweet = Tweet(jsonifiedResponse["text"])
 						process(tweet)
 		except:
-			print "Unexpected error:", sys.exc_info()[0]
+			print("Unexpected error: {}".format(sys.exc_info()[0]))
 
 class Tweet:
 	def __init__(self, text):
