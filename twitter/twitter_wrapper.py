@@ -1,5 +1,6 @@
 import requests
 import json
+import sys
 from requests_oauthlib import OAuth1
 
 STREAM_FILTER_STATUSES = 'https://stream.twitter.com/1.1/statuses/filter.json'
@@ -15,15 +16,19 @@ class TwitterApi:
 		}
 		url = STREAM_FILTER_STATUSES
 
-		response = requests.get(url, auth = self.auth, params = params, stream = True)
+		try:
+			response = requests.get(url, auth = self.auth, params = params, stream = True)
 
-		for line in response.iter_lines():
-			if line:
-				print(line)
-				jsonifiedResponse = json.loads(line)
-				if jsonifiedResponse["user"]["id_str"] == userId:
-					tweet = Tweet(jsonifiedResponse["text"])
-					process(tweet)
+
+			for line in response.iter_lines():
+				if line:
+					print(line)
+					jsonifiedResponse = json.loads(line)
+					if jsonifiedResponse["user"]["id_str"] == userId:
+						tweet = Tweet(jsonifiedResponse["text"])
+						process(tweet)
+		except:
+			print "Unexpected error:", sys.exc_info()[0]
 
 class Tweet:
 	def __init__(self, text):
