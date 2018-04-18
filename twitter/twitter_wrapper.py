@@ -1,4 +1,3 @@
-import os
 import requests
 import json
 from requests_oauthlib import OAuth1
@@ -9,9 +8,10 @@ class TwitterApi:
 	def __init__(self, consumer_key, consumer_secret, access_token, access_secret):
 		self.auth = OAuth1(consumer_key, consumer_secret, access_token, access_secret)
 
-	def on_status_change(self, process):
+	def on_status_change(self, userId, process):
 		params = {
-			'follow':'2449437698'
+			# 'follow':'2449437698'
+			'follow': userId
 		}
 		url = STREAM_FILTER_STATUSES
 
@@ -21,12 +21,10 @@ class TwitterApi:
 			if line:
 				print(line)
 				jsonifiedResponse = json.loads(line)
-				print(json.dumps(jsonifiedResponse, indent = 4))
+				if jsonifiedResponse["user"]["id_str"] == userId:
+					tweet = Tweet(jsonifiedResponse["text"])
+					process(tweet)
 
-consumer_key =
-consumer_secret =
-access_token =
-access_secret = 
-
-twitter = TwitterApi(consumer_key, consumer_secret, access_token, access_secret)
-twitter.on_status_change(None)
+class Tweet:
+	def __init__(self, text):
+		self.text = text
