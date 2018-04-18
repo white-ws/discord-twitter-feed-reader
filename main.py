@@ -4,6 +4,7 @@ from twitter.twitter_wrapper import TwitterApi
 
 def handle_tweet(tweet): 
 	print(tweet.text)
+	send_discord_message(tweet.text)
 
 def send_discord_message(message):
 	data = {
