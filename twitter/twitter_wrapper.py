@@ -19,7 +19,6 @@ class TwitterApi:
 		try:
 			response = requests.get(url, auth = self.auth, params = params, stream = True)
 
-
 			for line in response.iter_lines():
 				if line:
 					jsonifiedResponse = json.loads(line)

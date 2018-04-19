@@ -8,8 +8,8 @@ consumer_secret = os.environ.get('CONSUMER_SECRET')
 access_token = os.environ.get('ACCESS_TOKEN')
 access_secret = os.environ.get('ACCESS_TOKEN_SECRET')
 
-account_id = os.environ.get('TWITTER_ACCOUNT_ID')
-web_hook = os.environ.get('DISCORD_WEBHOOK')
+account_id = os.environ.get('BCJP_ACCOUNT_ID')
+web_hook = os.environ.get('BATTLECAT_WEBHOOK')
 
 twitter = TwitterApi(consumer_key, consumer_secret, access_token, access_secret)
 discord = DiscordApi(web_hook)
