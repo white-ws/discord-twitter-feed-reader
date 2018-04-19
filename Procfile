@@ -1,3 +1,3 @@
-worker: python main.py
-worker: python bcen.py
-worker: python bcjp.py
+worker-ac: python main.py
+worker-bcen: python bcen.py
+worker-bcjp: python bcjp.py
