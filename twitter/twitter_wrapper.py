@@ -22,8 +22,8 @@ class TwitterApi:
 
 			for line in response.iter_lines():
 				if line:
-					print(line)
 					jsonifiedResponse = json.loads(line)
+					print(json.dumps(jsonifiedResponse, indent = 4))
 					if jsonifiedResponse["user"]["id_str"] == userId:
 						tweet = Tweet(jsonifiedResponse["text"])
 						process(tweet)
