@@ -8,8 +8,8 @@ class BCTask:
 	web_hook = os.environ.get('BATTLECAT_WEBHOOK')
 
 	handle = {
-		account_jp_id: handle_tweet_jp,
-		account_en_id: handle_tweet_en
+		account_jp_id: self.handle_tweet_jp,
+		account_en_id: self.handle_tweet_en
 	}
 
 	def __init__(self, consumer_key, consumer_secret, access_token, access_secret):
