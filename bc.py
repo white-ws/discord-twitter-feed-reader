@@ -7,14 +7,13 @@ class BCTask:
 	account_en_id = os.environ.get('BCEN_ACCOUNT_ID')
 	web_hook = os.environ.get('BATTLECAT_WEBHOOK')
 
-	handle = {
-		account_jp_id: self.handle_tweet_jp,
-		account_en_id: self.handle_tweet_en
-	}
-
 	def __init__(self, consumer_key, consumer_secret, access_token, access_secret):
 		self.twitter = TwitterApi(consumer_key, consumer_secret, access_token, access_secret)
 		self.discord = DiscordApi(self.web_hook)
+		self.handle = {
+			account_jp_id: self.handle_tweet_jp,
+			account_en_id: self.handle_tweet_en
+		}
 
 	def handle_tweet_jp(self, tweet):
 		text = self.translator.translate(tweet.text, dest='en').text
