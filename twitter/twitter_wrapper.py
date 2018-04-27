@@ -10,10 +10,10 @@ class TwitterApi:
 	def __init__(self, consumer_key, consumer_secret, access_token, access_secret):
 		self.auth = OAuth1(consumer_key, consumer_secret, access_token, access_secret)
 
-	def on_status_change(self, userId, process):
+	def on_status_change(self, userIds, process):
 		params = {
 			# 'follow':'2449437698'
-			'follow': userId
+			'follow': ",".join(userIds)
 		}
 		url = STREAM_FILTER_STATUSES
 
@@ -25,9 +25,9 @@ class TwitterApi:
 					try:
 						jsonifiedResponse = json.loads(line)
 						print(json.dumps(jsonifiedResponse, indent = 4))
-						if jsonifiedResponse["user"]["id_str"] == userId:
+						if jsonifiedResponse["user"]["id_str"] in userIds:
 							tweet = Tweet(jsonifiedResponse["text"])
-							process(tweet)
+							process(tweet, jsonifiedResponse["user"]["id_str"])
 					except:
 						print("Unexpected error: {}".format(sys.exc_info()[0]))
 						traceback.print_exc()
