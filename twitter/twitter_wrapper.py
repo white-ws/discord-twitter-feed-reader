@@ -23,9 +23,9 @@ class TwitterApi:
 				if line:
 					jsonifiedResponse = json.loads(line)
 					print(json.dumps(jsonifiedResponse, indent = 4))
-					if jsonifiedResponse["user"]["id_str"] == userId:
-						tweet = Tweet(jsonifiedResponse["text"])
-						process(tweet)
+					# if jsonifiedResponse["user"]["id_str"] == userId:
+					tweet = Tweet(jsonifiedResponse["text"])
+					process(tweet)
 		except:
 			print("Unexpected error: {}".format(sys.exc_info()[0]))
 
