@@ -11,4 +11,8 @@ class DiscordApi:
 		data = {
 			'content': message
 		}
+		if (self.username != None):
+			data['username'] = self.username
+		if (self.avatar != None):
+			data['avatar_url'] = self.avatar
 		response = requests.post(self.webhook, data = data)

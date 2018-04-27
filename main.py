@@ -1,5 +1,7 @@
 import os
 import requests
+import time
+from concurrent.futures import ThreadPoolExecutor
 from twitter.twitter_wrapper import TwitterApi
 from discord.discord_wrapper import DiscordApi
 
@@ -16,6 +18,7 @@ class ACTask:
 		self.discord.send_discord_message(tweet.text)
 
 	def execute(self):
+		print("Starting up ACTask....")
 		self.twitter.on_status_change(self.account_id, self.handle_tweet)
 
 
@@ -32,6 +35,7 @@ class BCTask:
 		self.discord.send_discord_message(tweet.text)
 
 	def execute(self):
+		print("Starting up BCTask....")
 		self.twitter.on_status_change(self.account_id, self.handle_tweet)
 
 
@@ -40,4 +44,12 @@ consumer_secret = os.environ.get('CONSUMER_SECRET')
 access_token = os.environ.get('ACCESS_TOKEN')
 access_secret = os.environ.get('ACCESS_TOKEN_SECRET')
 
-#TODO ThreadPoolExecutor
+bc_task = BCTask(consumer_key, consumer_secret, access_token, access_secret)
+ac_task = ACTask(consumer_key, consumer_secret, access_token, access_secret)
+
+print("Script started.")
+executor = ThreadPoolExecutor(max_workers=3)
+time.sleep(60)
+executor.submit(bc_task.execute)
+time.sleep(30)
+executor.submit(ac_task.execute)
