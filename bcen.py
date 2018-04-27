@@ -11,7 +11,7 @@ class BCENTask:
 		self.discord = DiscordApi(self.web_hook)
 
 	def handle_tweet(self, tweet):
-		message = '【BCEN】- Disabled filter to test translation engine\n\n'+tweet.text
+		message = '\n========================================\n- Battle Cat EN Twitter\n========================================\n\n'+tweet.text
 		self.discord.send_discord_message(message)
 
 	def execute(self):

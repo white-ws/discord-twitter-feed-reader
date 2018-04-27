@@ -16,7 +16,7 @@ class BCJPTask:
 		text = self.translator.translate(tweet.text, dest='en').text
 		if(text is None):
 			text = tweet.text
-		message = '【BCJP】- Disabled filter to test translation engine\n\n'+text
+		message = '\n========================================\n【BCJP】- Battle Cat JP Twitter\n========================================\n\n'+text
 		self.discord.send_discord_message(message)
 
 	def execute(self):

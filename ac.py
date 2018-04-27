@@ -16,7 +16,7 @@ class ACTask:
 		text = self.translator.translate(tweet.text, dest='en').text
 		if(text is None):
 			text = tweet.text
-		message = 'Disabled filter to test translation engine\n\n' + text
+		message = '\n' + text
 		self.discord.send_discord_message(message)
 
 	def execute(self):
