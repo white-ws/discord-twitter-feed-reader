@@ -1,6 +1,7 @@
 import requests
 import json
 import sys
+import traceback
 from requests_oauthlib import OAuth1
 
 STREAM_FILTER_STATUSES = 'https://stream.twitter.com/1.1/statuses/filter.json'
@@ -28,6 +29,7 @@ class TwitterApi:
 					process(tweet)
 		except:
 			print("Unexpected error: {}".format(sys.exc_info()[0]))
+			traceback.print_exc()
 
 class Tweet:
 	def __init__(self, text):

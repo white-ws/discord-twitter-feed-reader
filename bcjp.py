@@ -13,7 +13,7 @@ class BCJPTask:
 		self.discord = DiscordApi(self.web_hook)
 
 	def handle_tweet(self, tweet):
-		text = self.translator.translate(tweet.text, dest='en')
+		text = self.translator.translate(tweet.text, dest='en').text
 		if(text is None):
 			text = tweet.text
 		message = '【BCJP】- Disabled filter to test translation engine\n\n'+text
