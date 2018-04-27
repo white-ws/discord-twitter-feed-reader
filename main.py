@@ -11,7 +11,7 @@ class ACTask:
 
 	def __init__(self, consumer_key, consumer_secret, access_token, access_secret):
 		self.twitter = TwitterApi(consumer_key, consumer_secret, access_token, access_secret)
-		self.discord = DiscordApi(web_hook)
+		self.discord = DiscordApi(self.web_hook)
 
 	def handle_tweet(self, tweet):
 		self.discord.send_discord_message(tweet.text)
@@ -28,7 +28,7 @@ class BCJPTask:
 
 	def __init__(self, consumer_key, consumer_secret, access_token, access_secret):
 		self.twitter = TwitterApi(consumer_key, consumer_secret, access_token, access_secret)
-		self.discord = DiscordApi(web_hook)
+		self.discord = DiscordApi(self.web_hook)
 
 	def handle_tweet(self, tweet):
 		message = '[BCJP]\n'+tweet.text
@@ -44,7 +44,7 @@ class BCENTask:
 
 	def __init__(self, consumer_key, consumer_secret, access_token, access_secret):
 		self.twitter = TwitterApi(consumer_key, consumer_secret, access_token, access_secret)
-		self.discord = DiscordApi(web_hook)
+		self.discord = DiscordApi(self.web_hook)
 
 	def handle_tweet(self, tweet):
 		message = '[BCEN]\n'+tweet.text
