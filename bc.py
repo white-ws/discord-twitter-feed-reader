@@ -33,4 +33,4 @@ class BCTask:
 	def execute(self):
 		print("Starting up BCTask....")
 		account_ids = [self.account_en_id, self.account_jp_id]
-		self.twitter.on_status_change(self.account_id, self.handle_tweet)
+		self.twitter.on_status_change(account_ids, self.handle_tweet)
