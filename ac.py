@@ -5,7 +5,6 @@ from discord.discord_wrapper import DiscordApi
 
 class ACTask:
 	account_id = os.environ.get('TWITTER_ACCOUNT_ID')
-	test_id = os.environ.get('TEST_ACCOUNT_ID')
 	web_hook = os.environ.get('DISCORD_WEBHOOK')
 	translator = Translator()
 

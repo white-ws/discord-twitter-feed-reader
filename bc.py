@@ -7,6 +7,7 @@ class BCTask:
 	account_jp_id = os.environ.get('BCJP_ACCOUNT_ID')
 	account_en_id = os.environ.get('BCEN_ACCOUNT_ID')
 	web_hook = os.environ.get('BATTLECAT_WEBHOOK')
+	translator = Translator()
 
 	def __init__(self, consumer_key, consumer_secret, access_token, access_secret):
 		self.twitter = TwitterApi(consumer_key, consumer_secret, access_token, access_secret)
