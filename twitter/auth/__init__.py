@@ -1,1 +1,1 @@
-__all__ = ["app_only"]
+__all__ = ["oauth2"]

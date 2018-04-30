@@ -1,3 +1,4 @@
+
 import os
 from twitter.twitter_wrapper import TwitterApi
 from discord.discord_wrapper import DiscordApi
@@ -26,8 +27,8 @@ class BCTask:
 		message = '\n========================================\n【BCEN】- Battle Cat EN Twitter\n========================================\n\n'+tweet.text
 		self.discord.send_discord_message(message)
 
-	def handle_tweet(self, tweet, userId):
-		self.handle[userId](tweet)
+	def handle_tweet(self, tweet):
+		self.handle[tweet.userId](tweet)
 
 	def execute(self):
 		print("Starting up BCTask....")

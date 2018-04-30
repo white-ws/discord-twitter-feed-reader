@@ -25,9 +25,9 @@ class TwitterApi:
 					try:
 						jsonifiedResponse = json.loads(line)
 						print(json.dumps(jsonifiedResponse, indent = 4))
-						if jsonifiedResponse["user"]["id_str"] in userIds:
-							tweet = Tweet(jsonifiedResponse["text"])
-							process(tweet, jsonifiedResponse["user"]["id_str"])
+						# if jsonifiedResponse["user"]["id_str"] in userIds:
+						tweet = Tweet(jsonifiedResponse["text"], jsonifiedResponse["user"]["id_str"])
+						process(tweet)
 					except:
 						print("Unexpected error: {}".format(sys.exc_info()[0]))
 						traceback.print_exc()
@@ -36,5 +36,6 @@ class TwitterApi:
 			traceback.print_exc()
 
 class Tweet:
-	def __init__(self, text):
+	def __init__(self, text, userId):
 		self.text = text
+		self.userId = userId;
