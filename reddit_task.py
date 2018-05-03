@@ -11,7 +11,7 @@ class RedditTask:
 		self.discord = DiscordApi(self.web_hook)
 		self.tasks = {}
 		subreddit = 'battlecats'
-		keywords = ['[BCJP]', '[BCEN]', '[Announcement]']
+		keywords = ['[BCJP]', '[BCEN]', '[Announcement]','new', 'New', 'PONOS']
 		for account in self.accounts.split(","):
 			self.tasks[account] = RedditRss(subreddit, keywords)
 
