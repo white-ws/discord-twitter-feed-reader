@@ -21,11 +21,11 @@ class BCTask:
 		text = self.translator.translate(tweet.text, dest='en').text
 		if(text is None):
 			text = tweet.text
-		message = '\n========================================\n【Twitter】【BCJP】- Battle Cat JP Twitter\n========================================\n\n'+text
+		message = '\n==============================\n【Twitter】【BCJP】- Battle Cat JP Twitter\n==============================\n\n'+text
 		self.discord.send_discord_message(message)
 
 	def handle_tweet_en(self, tweet):
-		message = '\n========================================\n【Twitter】【BCEN】- Battle Cat EN Twitter\n========================================\n\n'+tweet.text
+		message = '\n==============================\n【Twitter】【BCEN】- Battle Cat EN Twitter\n==============================\n\n'+tweet.text
 		self.discord.send_discord_message(message)
 
 	def handle_tweet(self, tweet):

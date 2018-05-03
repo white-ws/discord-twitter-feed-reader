@@ -10,14 +10,16 @@ class RedditTask:
 	def __init__(self):
 		self.discord = DiscordApi(self.web_hook)
 		self.tasks = {}
+		subreddit = 'battlecats'
+		keywords = ['[BCJP]', '[BCEN]', '[Announcement]']
 		for account in self.accounts.split(","):
-			self.tasks[account] = RedditRss()
+			self.tasks[account] = RedditRss(subreddit, keywords)
 
 	def handle_feed(self, entry):
 		print(entry.author)
 		print(entry.title)
 		print(entry.link)
-		message = '\n========================================\n【Reddit】{}\'s new post\n========================================\n\n'.format(entry.author)+entry.title+'\n'+entry.link
+		message = '\n==============================\n【Reddit】{}\'s new post\n==============================\n\n'.format(entry.author)+entry.title+'\n'+entry.link
 		self.discord.send_discord_message(message)
 
 	def execute(self):

@@ -1,7 +1,7 @@
 import feedparser
 import os
-import pytz
 import re
+import pytz
 from dateutil import parser
 from datetime import datetime
 from discord.discord_wrapper import DiscordApi
@@ -9,9 +9,10 @@ from discord.discord_wrapper import DiscordApi
 class RedditRss:
 	web_hook = os.environ.get('BATTLECAT_WEBHOOK')
 
-	def __init__(self):
+	def __init__(self, subreddit, keywords):
 		self.discord = DiscordApi(self.web_hook)
-		self.regex = re.compile('.*reddit.com/r/battlecats/.*')
+		self.regex = re.compile('.*reddit.com/r/{}/.*'.format(subreddit))
+		self.keywords = keywords
 		self.lastRead = None
 
 	def read_rss(self, user, process):
@@ -23,13 +24,10 @@ class RedditRss:
 				self.lastRead = datetime.now(pytz.utc)
 				break
 			entryDate = parser.parse(entry.date)
-			if entryDate >= self.lastRead and self.regex.search(entry.link) != None:
+			if entryDate >= self.lastRead and self.regex.search(entry.link) != None and any(keyword in entry.title for keyword in self.keywords):
 				rss_entry = RssEntry(entry.title, entry.link, entry.author)
 				process(rss_entry)
 				continue
-			print(entryDate)
-			print(self.lastRead)
-			print(entryDate >= self.lastRead)
 			break
 		self.lastRead = datetime.now(pytz.utc)
 
