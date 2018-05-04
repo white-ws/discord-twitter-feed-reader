@@ -8,6 +8,10 @@ requests = "*"
 requests-oauthlib = "*"
 "oauth2" = "*"
 googletrans = "*"
+feedparser = "*"
+pytz = "*"
+python-dateutil = "*"
+datetime = "*"
 
 [dev-packages]
 

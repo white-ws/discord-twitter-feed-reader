@@ -5,7 +5,6 @@ from discord.discord_wrapper import DiscordApi
 
 class ACTask:
 	account_id = os.environ.get('TWITTER_ACCOUNT_ID')
-	test_id = os.environ.get('TEST_ACCOUNT_ID')
 	web_hook = os.environ.get('DISCORD_WEBHOOK')
 	translator = Translator()
 
@@ -28,5 +27,5 @@ class ACTask:
 
 	def execute(self):
 		print("Starting up ACTask....")
-		account_ids = [self.account_id, self.test_id]
+		account_ids = [self.account_id]
 		self.twitter.on_status_change(account_ids, self.handle_tweet)
