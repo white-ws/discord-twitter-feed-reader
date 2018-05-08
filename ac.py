@@ -14,7 +14,7 @@ class ACTask:
 		self.discord = DiscordApi(self.web_hook)
 		self.handle = {
 			self.account_id: self.handle_tweet_ac,
-			self.spr5: self.handle_tweet_ac
+			self.spr5_id: self.handle_tweet_ac
 		}
 
 	def handle_tweet_ac(self, tweet):
