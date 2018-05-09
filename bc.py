@@ -7,6 +7,7 @@ class BCTask:
 	account_jp_id = os.environ.get('BCJP_ACCOUNT_ID')
 	account_en_id = os.environ.get('BCEN_ACCOUNT_ID')
 	web_hook = os.environ.get('BATTLECAT_WEBHOOK')
+	translator = Translator()
 
 	def __init__(self, consumer_key, consumer_secret, access_token, access_secret):
 		self.twitter = TwitterApi(consumer_key, consumer_secret, access_token, access_secret)
@@ -20,11 +21,11 @@ class BCTask:
 		text = self.translator.translate(tweet.text, dest='en').text
 		if(text is None):
 			text = tweet.text
-		message = '\n========================================\n【BCJP】- Battle Cat JP Twitter\n========================================\n\n'+text
+		message = '\n==============================\n【Twitter】【BCJP】- Battle Cat JP Twitter\n==============================\n\n'+text
 		self.discord.send_discord_message(message)
 
 	def handle_tweet_en(self, tweet):
-		message = '\n========================================\n【BCEN】- Battle Cat EN Twitter\n========================================\n\n'+tweet.text
+		message = '\n==============================\n【Twitter】【BCEN】- Battle Cat EN Twitter\n==============================\n\n'+tweet.text
 		self.discord.send_discord_message(message)
 
 	def handle_tweet(self, tweet):
