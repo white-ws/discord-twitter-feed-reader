@@ -22,9 +22,9 @@ class RedditRss:
 		rss_path = "https://www.reddit.com/user/{}/submitted/.rss".format(user)
 		rss = feedparser.parse(rss_path)
 
-		lastRead = parser.parse(self.redis.get('lastRead'))
+		lastRead = parser.parse(self.redis.get('lastRead_{}'.format(user)))
 		if lastRead is None:
-			print("Storing first lastRead..")
+			print("Storing first lastRead for {}..".format(user))
 			lastRead = datetime.now(pytz.utc)
 			self.redis.set('lastRead_{}'.format(user), lastRead)
 
