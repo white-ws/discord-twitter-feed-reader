@@ -22,15 +22,11 @@ class TwitterApi:
 
 			for line in response.iter_lines():
 				if line:
-					try:
-						jsonifiedResponse = json.loads(line)
-						print(json.dumps(jsonifiedResponse, indent = 4))
-						if jsonifiedResponse["user"]["id_str"] in userIds:
-							tweet = Tweet(jsonifiedResponse["text"], jsonifiedResponse["user"]["id_str"])
-							process(tweet)
-					except:
-						print("Unexpected error: {}".format(sys.exc_info()[0]))
-						traceback.print_exc()
+					jsonifiedResponse = json.loads(line)
+					print(json.dumps(jsonifiedResponse, indent = 4))
+					if jsonifiedResponse["user"]["id_str"] in userIds and jsonifiedResponse["in_reply_to_status_id"] == None and jsonifiedResponse["in_reply_to_user_id"] == None:
+						tweet = Tweet(jsonifiedResponse["text"], jsonifiedResponse["user"]["id_str"])
+						process(tweet)
 		except:
 			print("Unexpected error: {}".format(sys.exc_info()[0]))
 			traceback.print_exc()
