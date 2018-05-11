@@ -12,6 +12,7 @@ feedparser = "*"
 pytz = "*"
 python-dateutil = "*"
 datetime = "*"
+redis = "*"
 
 [dev-packages]
 
