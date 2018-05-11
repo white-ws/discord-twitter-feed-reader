@@ -17,16 +17,17 @@ class RedditRss:
 		redis_url = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
 		self.redis =  redis.from_url(redis_url)
 
+
 	def read_rss(self, user, process):
 		rss_path = "https://www.reddit.com/user/{}/submitted/.rss".format(user)
 		rss = feedparser.parse(rss_path)
 
-		lastRead = self.redis.get('lastRead')
+		lastRead = parser.parse(self.redis.get('lastRead'))
 		if lastRead is None:
 			print("Storing first lastRead..")
 			lastRead = datetime.now(pytz.utc)
 			self.redis.set('lastRead', lastRead)
-
+			
 		for entry in rss.entries:
 			entryDate = parser.parse(entry.date)
 			if entryDate < lastRead or self.regex.search(entry.link) == None or not any(keyword in entry.title for keyword in self.keywords):
