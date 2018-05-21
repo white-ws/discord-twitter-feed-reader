@@ -13,7 +13,7 @@ class BCTask:
 
 	def __init__(self, consumer_key, consumer_secret, access_token, access_secret):
 		self.twitter = TwitterApi(consumer_key, consumer_secret, access_token, access_secret)
-		self.discord = DiscordApi(self.web_hook, names, avatars)
+		self.discord = DiscordApi(self.web_hook, self.names, self.avatars)
 		self.handle = {
 			self.account_jp_id: self.handle_tweet_jp,
 			self.account_en_id: self.handle_tweet_en
