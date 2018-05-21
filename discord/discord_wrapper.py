@@ -5,9 +5,8 @@ class DiscordApi:
 
 	def __init__(self, webhook, usernames = None, avatars = None):
 		self.webhook = webhook
-		if (self.usernames != None):
+		if (usernames != None):
 			self.usernames = usernames.split(",")
-		if (self.avatars != None):
 			self.avatars = avatars.split(",")
 
 	def send_discord_message(self, message):
