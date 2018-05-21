@@ -1,18 +1,23 @@
 import requests
+import random
 
 class DiscordApi:
 
-	def __init__(self, webhook, username = None, avatar = None):
+	def __init__(self, webhook, usernames = None, avatars = None):
 		self.webhook = webhook
-		self.username = username
-		self.avatar = avatar
+		if (self.usernames != None):
+			self.usernames = usernames.split(",")
+		if (self.avatars != None):
+			self.avatars = avatars.split(",")
 
 	def send_discord_message(self, message):
 		data = {
 			'content': message
 		}
-		if (self.username != None):
-			data['username'] = self.username
-		if (self.avatar != None):
-			data['avatar_url'] = self.avatar
+
+		if (self.usernames != None):
+			index = random.randint(0, len(self.usernames))
+			data['username'] = self.usernames[index]
+			data['avatar_url'] = self.avatars[index]
+			
 		response = requests.post(self.webhook, data = data)
