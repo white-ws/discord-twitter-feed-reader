@@ -6,6 +6,7 @@ from discord.discord_wrapper import DiscordApi
 class ACTask:
 	account_id = os.environ.get('TWITTER_ACCOUNT_ID')
 	spr5_id = os.environ.get('SPR5_ACCOUNT_ID')
+	anime_id = os.environ.get('AC_ANIME_ACCOUNT_ID')
 	web_hook = os.environ.get('DISCORD_WEBHOOK')
 	names = os.environ.get('AC_BOT_NAMES')
 	avatars = os.environ.get('AC_BOT_AVATARS')
@@ -16,14 +17,29 @@ class ACTask:
 		self.discord = DiscordApi(self.web_hook, self.names, self.avatars)
 		self.handle = {
 			self.account_id: self.handle_tweet_ac,
-			self.spr5_id: self.handle_tweet_ac
+			self.spr5_id: self.handle_tweet_spr5,
+			self.anime_id: self.handle_tweet_anime
 		}
 
 	def handle_tweet_ac(self, tweet):
 		text = self.translator.translate(tweet.text, dest='en').text
 		if(text is None):
 			text = tweet.text
-		message = '\n' + text
+		message = '\n==============================\n【Twitter】【AC】\n==============================\n\n'+text
+		self.discord.send_discord_message(message)
+
+	def handle_tweet_spr5(self, tweet):
+		text = self.translator.translate(tweet.text, dest='en').text
+		if(text is None):
+			text = tweet.text
+		message = '\n==============================\n【Twitter】【SPR5】\n==============================\n\n'+text
+		self.discord.send_discord_message(message)
+
+	def handle_tweet_anime(self, tweet):
+		text = self.translator.translate(tweet.text, dest='en').text
+		if(text is None):
+			text = tweet.text
+		message = '\n==============================\n【Twitter】【ANIME】\n==============================\n\n'+text
 		self.discord.send_discord_message(message)
 
 	def handle_tweet(self, tweet):
