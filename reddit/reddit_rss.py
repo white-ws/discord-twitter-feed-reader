@@ -31,12 +31,16 @@ class RedditRss:
 			lastRead = parser.parse(lastReadData)
 
 		for entry in rss.entries:
-			entryDate = parser.parse(entry.date)
-			if entryDate < lastRead or self.regex.search(entry.link) == None or not any(keyword in entry.title for keyword in self.keywords):
-				break
-			rss_entry = RssEntry(entry.title, entry.link, entry.author)
-			process(rss_entry)
-			self.redis.set('lastRead_{}'.format(user), datetime.now(pytz.utc))
+			try:
+				entryDate = parser.parse(entry.date)
+				if entryDate < lastRead or self.regex.search(entry.link) == None or not any(keyword in entry.title for keyword in self.keywords):
+					break
+				rss_entry = RssEntry(entry.title, entry.link, entry.author)
+				process(rss_entry)
+				self.redis.set('lastRead_{}'.format(user), datetime.now(pytz.utc))
+			except:
+				print("Unexpected error: {}".format(sys.exc_info()[0]))
+				traceback.print_exc()
 
 class RssEntry:
 	def __init__(self, title, link, author):
