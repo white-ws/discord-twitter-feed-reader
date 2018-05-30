@@ -23,7 +23,7 @@ class TwitterApi:
 			for line in response.iter_lines():
 				if line:
 					jsonifiedResponse = json.loads(line)
-					print(json.dumps(jsonifiedResponse, indent = 4))
+					# print(json.dumps(jsonifiedResponse, indent = 4))
 					if jsonifiedResponse["user"]["id_str"] in userIds and jsonifiedResponse["in_reply_to_status_id"] == None and jsonifiedResponse["in_reply_to_user_id"] == None:
 						tweet = Tweet(jsonifiedResponse["text"], jsonifiedResponse["user"]["id_str"])
 						process(tweet)

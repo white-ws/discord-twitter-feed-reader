@@ -8,7 +8,7 @@ class DiscordApi:
 		if (usernames != None):
 			self.usernames = usernames.split(",")
 			self.avatars = avatars.split(",")
-		else: 
+		else:
 			self.usernames = None
 			self.avatars = None
 
@@ -18,7 +18,7 @@ class DiscordApi:
 		}
 
 		if (self.usernames != None):
-			index = random.randint(0, len(self.usernames))
+			index = random.randint(0, len(self.usernames) - 1)
 			data['username'] = self.usernames[index]
 			data['avatar_url'] = self.avatars[index]
 		response = requests.post(self.webhook, data = data)
