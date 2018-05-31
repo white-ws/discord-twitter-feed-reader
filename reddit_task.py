@@ -25,9 +25,9 @@ class RedditTask:
 	def execute(self):
 		print("Starting up RedditTask....")
 		while(True):
-			print("Looping.......")
+			# print("Looping.......")
 			for account in self.accounts.split(","):
-				print("For account {}".format(account))
+				# print("For account {}".format(account))
 				self.tasks[account].read_rss(account, self.handle_feed)
 				time.sleep(1)
 			time.sleep(60)
