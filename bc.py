@@ -20,7 +20,10 @@ class BCTask:
 		}
 
 	def handle_tweet_jp(self, tweet):
-		text = self.translator.translate(tweet.text, dest='en').text
+		try:
+			text = self.translator.translate(tweet.text, dest='en').text
+		except:
+			print("Error translating tweet: {}".format(tweet.text)
 		if(text is None):
 			text = tweet.text
 		message = '\n==============================\n【Twitter】【BCJP】- Battle Cat JP Twitter\n==============================\n\n'+text
