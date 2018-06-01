@@ -5,7 +5,7 @@ class DiscordApi:
 
 	def __init__(self, webhook, usernames = None, avatars = None):
 		self.webhook = webhook
-		if (usernames != None):
+		if usernames != None:
 			self.usernames = usernames.split(",")
 			self.avatars = avatars.split(",")
 		else:
@@ -17,7 +17,7 @@ class DiscordApi:
 			'content': message
 		}
 
-		if (self.usernames != None):
+		if self.usernames != None:
 			index = random.randint(0, len(self.usernames) - 1)
 			data['username'] = self.usernames[index]
 			data['avatar_url'] = self.avatars[index]

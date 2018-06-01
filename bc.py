@@ -24,7 +24,7 @@ class BCTask:
 			text = self.translator.translate(tweet.text, dest='en').text
 		except:
 			print("Error translating tweet: {}".format(tweet.text)
-		if(text is None):
+		if text is None:
 			text = tweet.text
 		message = '\n==============================\n【Twitter】【BCJP】- Battle Cat JP Twitter\n==============================\n\n'+text
 		self.discord.send_discord_message(message)
