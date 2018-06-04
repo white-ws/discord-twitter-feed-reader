@@ -25,7 +25,7 @@ class ACTask:
 		try:
 			text = self.translator.translate(tweet.text, dest='en').text
 		except:
-			print("Error translating tweet: {}".format(tweet.text)
+			print("Error translating tweet: {}".format(tweet.text))
 		if text is None:
 			text = tweet.text
 		message = '\n==============================\n【Twitter】【AC】\n==============================\n\n'+text
@@ -35,7 +35,7 @@ class ACTask:
 		try:
 			text = self.translator.translate(tweet.text, dest='en').text
 		except:
-			print("Error translating tweet: {}".format(tweet.text)
+			print("Error translating tweet: {}".format(tweet.text))
 		if text is None:
 			text = tweet.text
 		message = '\n==============================\n【Twitter】【SPR5】\n==============================\n\n'+text
@@ -45,7 +45,7 @@ class ACTask:
 		try:
 			text = self.translator.translate(tweet.text, dest='en').text
 		except:
-			print("Error translating tweet: {}".format(tweet.text)
+			print("Error translating tweet: {}".format(tweet.text))
 		if text is None:
 			text = tweet.text
 		message = '\n==============================\n【Twitter】【ANIME】\n==============================\n\n'+text
