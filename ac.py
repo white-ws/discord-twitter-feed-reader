@@ -26,8 +26,8 @@ class ACTask:
 			text = self.translator.translate(tweet.text, dest='en').text
 		except:
 			print("Error translating tweet: {}".format(tweet.text))
-		if text is None:
 			text = tweet.text
+
 		message = '\n==============================\n【Twitter】【AC】\n==============================\n\n'+text
 		self.discord.send_discord_message(message)
 
@@ -36,8 +36,8 @@ class ACTask:
 			text = self.translator.translate(tweet.text, dest='en').text
 		except:
 			print("Error translating tweet: {}".format(tweet.text))
-		if text is None:
 			text = tweet.text
+
 		message = '\n==============================\n【Twitter】【SPR5】\n==============================\n\n'+text
 		self.discord.send_discord_message(message)
 
@@ -46,8 +46,8 @@ class ACTask:
 			text = self.translator.translate(tweet.text, dest='en').text
 		except:
 			print("Error translating tweet: {}".format(tweet.text))
-		if text is None:
 			text = tweet.text
+			
 		message = '\n==============================\n【Twitter】【ANIME】\n==============================\n\n'+text
 		self.discord.send_discord_message(message)
 
