@@ -10,11 +10,15 @@ class ACTask:
 	web_hook = os.environ.get('DISCORD_WEBHOOK')
 	names = os.environ.get('AC_BOT_NAMES')
 	avatars = os.environ.get('AC_BOT_AVATARS')
+	spr5_web_hook = os.environ.get('SPR5_WEBHOOK')
+	spr5_names = os.environ.get('SPR5_BOT_NAMES')
+	spr5_avatars = os.environ.get('SPR5_BOT_AVATARS')
 	translator = Translator()
 
 	def __init__(self, consumer_key, consumer_secret, access_token, access_secret):
 		self.twitter = TwitterApi(consumer_key, consumer_secret, access_token, access_secret)
 		self.discord = DiscordApi(self.web_hook, self.names, self.avatars)
+		self.spr5_discord = DiscordApi(self.spr5_web_hook, self.spr5_names, self.spr5_avatars)
 		self.handle = {
 			self.account_id: self.handle_tweet_ac,
 			self.spr5_id: self.handle_tweet_spr5,
@@ -39,7 +43,7 @@ class ACTask:
 			text = tweet.text
 
 		message = '\n==============================\n【Twitter】【SPR5】\n==============================\n\n'+text
-		self.discord.send_discord_message(message)
+		self.spr5_discord.send_discord_message(message)
 
 	def handle_tweet_anime(self, tweet):
 		try:
@@ -47,7 +51,7 @@ class ACTask:
 		except:
 			print("Error translating tweet: {}".format(tweet.text))
 			text = tweet.text
-			
+
 		message = '\n==============================\n【Twitter】【ANIME】\n==============================\n\n'+text
 		self.discord.send_discord_message(message)
 
