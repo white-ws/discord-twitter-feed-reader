@@ -7,7 +7,7 @@ name = "pypi"
 requests = "*"
 requests-oauthlib = "*"
 "oauth2" = "*"
-googletrans = "*"
+py_translator = "*"
 feedparser = "*"
 pytz = "*"
 python-dateutil = "*"
@@ -17,4 +17,4 @@ redis = "*"
 [dev-packages]
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
