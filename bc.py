@@ -1,5 +1,5 @@
 import os
-from googletrans import Translator
+from py_translator import Translator
 from twitter.twitter_wrapper import TwitterApi
 from discord.discord_wrapper import DiscordApi
 
