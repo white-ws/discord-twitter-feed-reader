@@ -20,7 +20,7 @@ class RedditTask:
 		print(entry.title)
 		print(entry.link)
 		message = '\n==============================\n【Reddit】{}\'s new post\n==============================\n\n'.format(entry.author)+entry.title+'\n'+entry.link
-		# self.discord.send_discord_message(message)
+		self.discord.send_discord_message(message)
 
 	def execute(self):
 		print("Starting up RedditTask....")
