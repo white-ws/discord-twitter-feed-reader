@@ -38,13 +38,18 @@ class RedditRss:
 			# DEBUG
 			if entryDate < lastRead or self.regex.search(entry.link) == None or not any(keyword in entry.title for keyword in self.keywords):
 				break
-			print("[DEBUG] \n It didnt break in this case:")
+			print("\n[DEBUG] It didnt break in this case:")
 			print("[DEBUG] Entry Date={}".format(entryDate))
 			print("[DEBUG] lastRead={}".format(lastRead))
 			print("\n")
 			rss_entry = RssEntry(entry.title, entry.link, entry.author)
 			process(rss_entry)
-			self.redis.set('lastRead_{}'.format(user), datetime.now(pytz.utc))
+			print("[DEBUG] this should be printed")
+			key = 'lastRead_{}'.format(user)
+			print("[DEBUG] key assignment worked")
+			value = datetime.now(pytz.utc)
+			print("[DEBUG] value assignment worked")
+			self.redis.set(key, value)
 
 			print("[DEBUG] set new last read")
 
