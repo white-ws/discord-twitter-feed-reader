@@ -46,9 +46,9 @@ class RedditRss:
 			process(rss_entry)
 			print("[DEBUG] this should be printed")
 			key = 'lastRead_{}'.format(user)
-			print("[DEBUG] key assignment worked")
+			print("[DEBUG] key assignment worked: {}".format(key))
 			value = datetime.now(pytz.utc)
-			print("[DEBUG] value assignment worked")
+			print("[DEBUG] value assignment worked: {}".format(value))
 			self.redis.set(key, value)
 
 			print("[DEBUG] set new last read")
