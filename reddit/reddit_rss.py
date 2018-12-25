@@ -50,7 +50,7 @@ class RedditRss:
 			value = datetime.now(pytz.utc)
 			print("[DEBUG] value assignment worked: {}".format(value))
 			print("[DEBUG] what's wrong with self.redis ? {}".format(self.redis))
-			self.redis.set(key, value)
+			self.redis.set("{}".format(key), "{}".format(value))
 
 			print("[DEBUG] set new last read")
 
