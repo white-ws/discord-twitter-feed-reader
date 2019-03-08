@@ -7,6 +7,7 @@ class ACTask:
 	account_id = os.environ.get('TWITTER_ACCOUNT_ID')
 	spr5_id = os.environ.get('SPR5_ACCOUNT_ID')
 	anime_id = os.environ.get('AC_ANIME_ACCOUNT_ID')
+	afterlost_id = os.environ.get('AFTERLOST_ACCOUNT_ID')
 	web_hook = os.environ.get('DISCORD_WEBHOOK')
 	names = os.environ.get('AC_BOT_NAMES')
 	avatars = os.environ.get('AC_BOT_AVATARS')
@@ -22,7 +23,8 @@ class ACTask:
 		self.handle = {
 			self.account_id: self.handle_tweet_ac,
 			self.spr5_id: self.handle_tweet_spr5,
-			self.anime_id: self.handle_tweet_anime
+			self.anime_id: self.handle_tweet_anime,
+			self.afterlost_id: self.handle_tweet_afterlost
 		}
 
 	def handle_tweet_ac(self, tweet):
@@ -53,6 +55,16 @@ class ACTask:
 			text = tweet.text
 
 		message = '\n==============================\n【Twitter】【ANIME】\n==============================\n\n'+text
+		self.discord.send_discord_message(message)
+
+	def handle_tweet_afterlost(self, tweet):
+		try:
+			text = self.translator.translate(tweet.text, dest='en').text
+		except:
+			print("Error translating tweet: {}".format(tweet.text))
+			text = tweet.text
+
+		message = '\n==============================\n【Twitter】【AFTER LOST】\n==============================\n\n'+text
 		self.discord.send_discord_message(message)
 
 	def handle_tweet(self, tweet):
