@@ -72,5 +72,5 @@ class ACTask:
 
 	def execute(self):
 		print("Starting up ACTask....")
-		account_ids = [self.account_id, self.spr5_id, self.anime_id]
+		account_ids = [self.account_id, self.spr5_id, self.anime_id, self.afterlost_id]
 		self.twitter.on_status_change(account_ids, self.handle_tweet)
