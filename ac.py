@@ -8,6 +8,7 @@ class ACTask:
 	spr5_id = os.environ.get('SPR5_ACCOUNT_ID')
 	anime_id = os.environ.get('AC_ANIME_ACCOUNT_ID')
 	afterlost_id = os.environ.get('AFTERLOST_ACCOUNT_ID')
+	afterlost_en_id = os.environ.get('AFTERLOST_EN_ACCOUNT_ID')
 	web_hook = os.environ.get('DISCORD_WEBHOOK')
 	names = os.environ.get('AC_BOT_NAMES')
 	avatars = os.environ.get('AC_BOT_AVATARS')
@@ -24,7 +25,8 @@ class ACTask:
 			self.account_id: self.handle_tweet_ac,
 			self.spr5_id: self.handle_tweet_spr5,
 			self.anime_id: self.handle_tweet_anime,
-			self.afterlost_id: self.handle_tweet_afterlost
+			self.afterlost_id: self.handle_tweet_afterlost,
+			self.afterlost_en_id: self.handle_tweet_afterlost
 		}
 
 	def handle_tweet_ac(self, tweet):
@@ -72,5 +74,5 @@ class ACTask:
 
 	def execute(self):
 		print("Starting up ACTask....")
-		account_ids = [self.account_id, self.spr5_id, self.anime_id, self.afterlost_id]
+		account_ids = [self.account_id, self.spr5_id, self.anime_id, self.afterlost_id, self.afterlost_en_id]
 		self.twitter.on_status_change(account_ids, self.handle_tweet)
